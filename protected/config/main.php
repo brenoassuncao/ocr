@@ -18,6 +18,8 @@ return array(
     	'ocr_folder_proc' 	=>'/mnt/arquivos_ocr/Originais_Processados/', // pasta de arquivos processados 
         'ocr_folder_erro'	=>'/mnt/arquivos_ocr/Erro/', // pasta de erros 
 
+        'cron_key'	=> 'seuHashSeguroAqui', // Hash que será usado no cron para evitar chamadas não autorizadas ao cron
+
 		'ldap'      => array(
         	    'host'      	=> 'ldap.exemplo.com.br',
 	            'port'      	=> 389,

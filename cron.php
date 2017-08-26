@@ -1,9 +1,15 @@
 <?php
 
-    $db = require(dirname(__FILE__).'/protected/config/database.php') ;
-     //$ocr_folder =  '/var/www/ocr/arquivos_ocr/'; // Pasta de trabalho do OCR
-     $ocr_folder =  '/arquivos_ocr/'; // Pasta de trabalho do OCR
+    $main = require(dirname(__FILE__).'/protected/config/main.php') ;
 
+    //evita que o cron seja executado sem permissão
+    // deve ser configurado o mesmo cron aqui e na chamada
+    if (!isset($_GET['cron_key']) || $main['params']['cron_key'] != $_GET['cron_key']) {
+      die();
+    }
+
+    $db = require(dirname(__FILE__).'/protected/config/database.php') ;
+     
 
     try {
         $conn = new PDO($db['connectionString'], $db['username'], $db['password']);
@@ -11,9 +17,9 @@
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         echo "Connected successfully";
 
-        //caminhos das pastas de busca
-        $folder_out =  $ocr_folder.'Saida/';
-        $folder_error = $ocr_folder.'Erro/';
+        $folder_out      =  $main['params']['ocr_folder_out']; // pasta de saída do OCR (onde o OCR-server vai colocar os arquivos convertidos corretamente)
+        $folder_erro     =  $main['params']['ocr_folder_erro']; // pasta de erro do OCR (onde o OCR-server vai colocar os arquivos com erro no processamento)
+
 
         //Atualização do Status
         $resultados = $conn->query("select id, hash from arquivo where status = 1");
@@ -30,7 +36,7 @@
             }
 
 
-            if(file_exists($folder_error.$item['hash'])){
+            if(file_exists($folder_erro.$item['hash'])){
                 $sql_update = "UPDATE arquivo set status = 3 where id = " . $item['id'] ; // status 3 = erro no processamento
                 $conn->query($sql_update) ;
                 $qtd ++;
