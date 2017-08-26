@@ -1,14 +1,7 @@
-Este projeto é um complemento do trabalho desenvolvido pelo pessoal da Anatel na construção do serviço OCR-SERVER (https://softwarepublico.gov.br/gitlab/anatel/ocr-server). O OCR-SERVER é uma solução baseada em software livre e de código aberto que processar arquivos PDF e adiciona uma camada de texto em arquivos PDF escaneados. o OCR-SERVER cria um serviço ativo no servidor, o qual que fica varrendo uma pasta de entrada à procura de arquivos PDF e os processa com um mecanismo de reconhecimento ótico de caracteres OCR, transformando pdfs não pesquisáveis em PDFs pesquisáveis. 
+Este projeto é um complemento do trabalho desenvolvido pelo pessoal da Anatel na construção do serviço OCR-SERVER (https://softwarepublico.gov.br/gitlab/anatel/ocr-server). O OCR-SERVER é uma solução baseada em software livre e de código aberto que processa arquivos PDF e adiciona uma camada de texto em arquivos PDF escaneados. o OCR-SERVER cria um serviço ativo no servidor, o qual que fica varrendo uma pasta de entrada à procura de arquivos PDF e os processa com um mecanismo de reconhecimento ótico de caracteres OCR, transformando pdfs não pesquisáveis em PDFs pesquisáveis. 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 O projeto OCR-SERVER funciona apenas na rede local. Este projeto cria uma interface web para o OCR-SERVER e possibilita por meio do controle de usuários um maior gerenciamento dos arquivos que estão sendo processados. Além de permitir que usuários de qualquer lugar com acesso à internet possam fazer uso do serviço de conversão via OCR.
-=======
-O projeto OCR-SERVER funciona apenas na rede local. Este projeto cria uma interface web para o OCR-SERVER e possibilita por meio do controle de usuários uma maior gerenciamento dos arquivos que estão sendo processados. Além de permitir que usuários de qualquer lugar possam fazer uso do serviço de conversão via OCR.
->>>>>>> 7e8ab1c... Update README.md
-=======
-O projeto OCR-SERVER funciona apenas na rede local. Este projeto cria uma interface web para o OCR-SERVER e possibilita por meio do controle de usuários um maior gerenciamento dos arquivos que estão sendo processados. Além de permitir que usuários de qualquer lugar com acesso à internet possam fazer uso do serviço de conversão via OCR.
->>>>>>> aa387c2... Update README.md
 
 Abaixo temos a tela inicial depois de autenticado. Essa tela é bem intuitiva. Simplesmente o usuário faz upload de um arquivo e fica aguardando o processamento do mesmo. o arquivo é convertido, surge um link para fazer download do arquivo convertido.
 
@@ -60,12 +53,12 @@ Para configurar o a interface WEB do OCR-SERVER no servidor deve-se seguir os pa
 	$ mysql -p ocr < ocr.sql
 ```  
 
-4 - Configurar uma tarefa no cron para atualizar as informações sobre os arquivos processados
+4 - Configurar uma tarefa no cron para atualizar as informações sobre os arquivos processados. É importante alterar o hash usado aqui para evitar chamadas não autorizadas ao cron
 	
 ```
 	$ crontab -e
 	Adicionar a seguinte linha (sugestão)
-	*/1 * * * * /usr/bin/php /var/www/ocr/cron.php
+	*/1 * * * * /usr/bin/php /var/www/ocr/cron.php?cron_key=seuHashSeguroAqui
 ```  
 
 para administrar a interface web:
@@ -73,7 +66,7 @@ para administrar a interface web:
 - usuário: admin
 - senha: admin
 
-Arquivo de configuração: protected/config/main.php
+**Arquivo de configuração: protected/config/main.php**
 
 Observar nesse arquivo as configurações para usar a autenticação Ldap ou via banco de dados. Hoje está configurado para usar o banco de dados. mas pode ser alterado para usar o LDAP. Para isso deve se alterar o parâmetro 'autentication' e 'ldap' no arquivo de configuração conforme abaixo:
 ```
@@ -106,4 +99,11 @@ my %SUB_DIRS = ( 'IN'=>'Entrada', 'OUT'=>'Saida', 'PROC'=>'Originais_Processados
 ```
 
 
+*Cron*
+
+O parâmetro cron_key usado no passo 4 (criar tarefa no cron) deve ser o mesmo usado aqui. É esse parâmetro que vai permitir que o cron execute sem problemas. crie um hash e use nos dois lugares (arquivo de configuração e tarefa do cron)
+
+```
+   'cron_key'	=> 'seuHashSeguroAqui', // Hash que será usado no cron para evitar chamadas não autorizadas ao cron
+```
 Sugestões / Contribuições são bem vindas ao projeto.
