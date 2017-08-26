@@ -89,6 +89,10 @@ class AdminController extends RController
 				if($model->save()) {
 					$profile->user_id=$model->id;
 					$profile->save();
+
+					// adiciona o perfil "Autenticado" a todo usuário cadastrado 
+            		$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
+            		$authorizer->authManager->assign('Authenticated', $profile->user_id);
 				}
 				$this->redirect(array('view','id'=>$model->id));
 			} else $profile->validate();

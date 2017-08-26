@@ -13,10 +13,10 @@ return array(
 		'autentication'		=>'bd',  // preencher com : 'ldap' OU 'bd'		
 
 		// Configurações das pastas onde o OCR Server vai buscar arquivos a serem processados e onde ele vai depositar os arquivos após o processamento
-		'ocr_folder_in'		=>'/mnt/arquivos_ocr/Entrada/', // pasta de entrada  (arquivos para processar)
-        'ocr_folder_out'	=>'/mnt/arquivos_ocr/Saida/', // pasta de saída  (arquivos convertidos)
-    	'ocr_folder_proc' 	=>'/mnt/arquivos_ocr/Originais_Processados/', // pasta de arquivos processados 
-        'ocr_folder_erro'	=>'/mnt/arquivos_ocr/Erro/', // pasta de erros 
+		'ocr_folder_in'		=>'/var/www/ocr/arquivos_ocr/Entrada/', // pasta de entrada  (arquivos para processar)
+        'ocr_folder_out'	=>'/var/www/ocr/arquivos_ocr/Saida/', // pasta de saída  (arquivos convertidos)
+    	'ocr_folder_proc' 	=>'/var/www/ocr/arquivos_ocr/Originais_Processados/', // pasta de arquivos processados 
+        'ocr_folder_erro'	=>'/var/www/ocr/arquivos_ocr/Erro/', // pasta de erros 
 
         'cron_key'	=> 'seuHashSeguroAqui', // Hash que será usado no cron para evitar chamadas não autorizadas ao cron
 
