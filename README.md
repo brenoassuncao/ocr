@@ -53,12 +53,12 @@ Para configurar o a interface WEB do OCR-SERVER no servidor deve-se seguir os pa
 	$ mysql -p ocr < ocr.sql
 ```  
 
-4 - Configurar uma tarefa no cron para atualizar as informações sobre os arquivos processados
+4 - Configurar uma tarefa no cron para atualizar as informações sobre os arquivos processados. É importante alterar o hash usado aqui para evitar chamadas não autorizadas ao cron
 	
 ```
 	$ crontab -e
 	Adicionar a seguinte linha (sugestão)
-	*/1 * * * * /usr/bin/php /var/www/ocr/cron.php
+	*/1 * * * * /usr/bin/php /var/www/ocr/cron.php?cron_key=seuHashSeguroAqui
 ```  
 
 para administrar a interface web:
@@ -66,7 +66,7 @@ para administrar a interface web:
 - usuário: admin
 - senha: admin
 
-Arquivo de configuração: protected/config/main.php
+**Arquivo de configuração: protected/config/main.php**
 
 Observar nesse arquivo as configurações para usar a autenticação Ldap ou via banco de dados. Hoje está configurado para usar o banco de dados. mas pode ser alterado para usar o LDAP. Para isso deve se alterar o parâmetro 'autentication' e 'ldap' no arquivo de configuração conforme abaixo:
 ```
@@ -99,4 +99,11 @@ my %SUB_DIRS = ( 'IN'=>'Entrada', 'OUT'=>'Saida', 'PROC'=>'Originais_Processados
 ```
 
 
+*Cron*
+
+O parâmetro cron_key usado no passo 4 (criar tarefa no cron) deve ser o mesmo usado aqui. É esse parâmetro que vai permitir que o cron execute sem problemas. crie um hash e use nos dois lugares (arquivo de configuração e tarefa do cron)
+
+```
+   'cron_key'	=> 'seuHashSeguroAqui', // Hash que será usado no cron para evitar chamadas não autorizadas ao cron
+```
 Sugestões / Contribuições são bem vindas ao projeto.
