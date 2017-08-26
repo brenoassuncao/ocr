@@ -37,11 +37,8 @@ Para configurar o a interface WEB do OCR-SERVER no servidor deve-se seguir os pa
 	$ cd /var/www
 	$ wget https://github.com/yiisoft/yii/releases/download/1.1.18/yii-1.1.18.018a89.tar.gz
 	$ tar xzvf yii-1.1.18.018a89.tar.gz
-	$ mv yii-1.1.18.018a89 yii
-	$ cd ocr
-	$ mkdir assets
-	$ mkdir protected/runtime
-	$ chown www-data * -R
+	$ mv yii-1.1.18.018a89 yii	
+	$ chown www-data ocr -R
 
 ```
 
