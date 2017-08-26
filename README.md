@@ -1,14 +1,7 @@
-Este projeto é um complemento do trabalho desenvolvido pelo pessoal da Anatel na construção do serviço OCR-SERVER (https://softwarepublico.gov.br/gitlab/anatel/ocr-server). O OCR-SERVER é uma solução baseada em software livre e de código aberto que processar arquivos PDF e adiciona uma camada de texto em arquivos PDF escaneados. o OCR-SERVER cria um serviço ativo no servidor, o qual que fica varrendo uma pasta de entrada à procura de arquivos PDF e os processa com um mecanismo de reconhecimento ótico de caracteres OCR, transformando pdfs não pesquisáveis em PDFs pesquisáveis. 
+Este projeto é um complemento do trabalho desenvolvido pelo pessoal da Anatel na construção do serviço OCR-SERVER (https://softwarepublico.gov.br/gitlab/anatel/ocr-server). O OCR-SERVER é uma solução baseada em software livre e de código aberto que processa arquivos PDF e adiciona uma camada de texto em arquivos PDF escaneados. o OCR-SERVER cria um serviço ativo no servidor, o qual que fica varrendo uma pasta de entrada à procura de arquivos PDF e os processa com um mecanismo de reconhecimento ótico de caracteres OCR, transformando pdfs não pesquisáveis em PDFs pesquisáveis. 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 O projeto OCR-SERVER funciona apenas na rede local. Este projeto cria uma interface web para o OCR-SERVER e possibilita por meio do controle de usuários um maior gerenciamento dos arquivos que estão sendo processados. Além de permitir que usuários de qualquer lugar com acesso à internet possam fazer uso do serviço de conversão via OCR.
-=======
-O projeto OCR-SERVER funciona apenas na rede local. Este projeto cria uma interface web para o OCR-SERVER e possibilita por meio do controle de usuários uma maior gerenciamento dos arquivos que estão sendo processados. Além de permitir que usuários de qualquer lugar possam fazer uso do serviço de conversão via OCR.
->>>>>>> 7e8ab1c... Update README.md
-=======
-O projeto OCR-SERVER funciona apenas na rede local. Este projeto cria uma interface web para o OCR-SERVER e possibilita por meio do controle de usuários um maior gerenciamento dos arquivos que estão sendo processados. Além de permitir que usuários de qualquer lugar com acesso à internet possam fazer uso do serviço de conversão via OCR.
->>>>>>> aa387c2... Update README.md
 
 Abaixo temos a tela inicial depois de autenticado. Essa tela é bem intuitiva. Simplesmente o usuário faz upload de um arquivo e fica aguardando o processamento do mesmo. o arquivo é convertido, surge um link para fazer download do arquivo convertido.
 
