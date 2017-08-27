@@ -4,3 +4,8 @@ protected/runtime/*
 !protected/runtime/.gitignore
 protected/data/*.db
 themes/classic/views/
+arquivos_ocr/*
+!arquivos_ocr/Entrada/.htaccess
+!arquivos_ocr/Saida/.htaccess
+!arquivos_ocr/Erro/.htaccess
+!arquivos_ocr/Originais_Processados/.htaccess
