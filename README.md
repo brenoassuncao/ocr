@@ -26,10 +26,11 @@ O sistema controla os usuários e seus arquivos. Cada arquivo que o usuário faz
 
 Para configurar o a interface WEB do OCR-SERVER no servidor deve-se seguir os passos abaixo:
 
-1 - clonar o repositório para /var/www/ocr
+1 - clonar o repositório para /var/www/ocr . Neste caso estamos considerando que /var/www é a pasta raiz do servidor
 ```
-	$ cd /var/www
+	$ cd /var/www  
 	$ git clone https://github.com/brenoassuncao/ocr.git
+	$ chown www-data ocr -R  # substituir www-data pelo usuário do apache se for diferente
 ```
 	
 2 - baixar a versão 1.1.18 do yii-framework e colocar na pasta /var/www/yii  (ou mais recente)
@@ -38,7 +39,7 @@ Para configurar o a interface WEB do OCR-SERVER no servidor deve-se seguir os pa
 	$ wget https://github.com/yiisoft/yii/releases/download/1.1.18/yii-1.1.18.018a89.tar.gz
 	$ tar xzvf yii-1.1.18.018a89.tar.gz
 	$ mv yii-1.1.18.018a89 yii	
-	$ chown www-data ocr -R
+	
 
 ```
 
@@ -46,7 +47,7 @@ Para configurar o a interface WEB do OCR-SERVER no servidor deve-se seguir os pa
 	- editar o arquivo protected/config/database.php
 	- restaurar uma cópia do banco de dados 
 ```
-	$ cd /var/www/mysql
+	$ cd /var/www/ocr
 	$ mysql -p ocr < ocr.sql
 ```  
 
@@ -54,11 +55,12 @@ Para configurar o a interface WEB do OCR-SERVER no servidor deve-se seguir os pa
 	
 ```
 	$ crontab -e
-	Adicionar a seguinte linha (sugestão)
+	# Adicionar a seguinte linha (sugestão)
 	*/1 * * * * /usr/bin/php /var/www/ocr/cron.php?cron_key=seuHashSeguroAqui
 ```  
 
-para administrar a interface web:
+Agora basta acessar o serviço pelo seu navegador preferido. Alguns passos podem ser necessários para configurar o apache para servir o projeto, como adicionar o site nas configurações do apache.
+Para administrar a interface web:
 
 - usuário: admin
 - senha: admin
