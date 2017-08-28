@@ -55,8 +55,9 @@ Para configurar o a interface WEB do OCR-SERVER no servidor deve-se seguir os pa
 	
 ```
 	$ crontab -e
-	# Adicionar a seguinte linha (sugestão)
-	*/1 * * * * /usr/bin/php /var/www/ocr/cron.php?cron_key=seuHashSeguroAqui
+	# Adicionar a seguinte linha e troque "ocr.local" pelo endereço correto do site (sugestão). 
+	# vai executar a cada 1 minuto
+	* * * * * wget -O - -q -t 1 http://ocr.local/cron.php?cron_key=seuHashSeguroAqui
 ```  
 
 Agora basta acessar o serviço pelo seu navegador preferido. Alguns passos podem ser necessários para configurar o apache para servir o projeto, como adicionar o site nas configurações do apache.
