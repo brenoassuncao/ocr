@@ -76,6 +76,7 @@ class AdminController extends RController
 	public function actionCreate()
 	{
 		$model=new User;
+		$model->status = 1 ;
 		$profile=new Profile;
 		$this->performAjaxValidation(array($model,$profile));
 		if(isset($_POST['User']))
